@@ -1,0 +1,12 @@
+CS 345 Project Proposal
+(Implementing Virtual Stock Market)
+
+(By Udit Agarwal(09012330) & Rahul Ritesh (09012320))
+
+Problem Statement:
+
+To develop a Virtual Stock trading platform using data from bseindia url and then using the API's, we can store the data in MYSQL. Using this data, we can simulate a real-time trading platform on which several users can trade as in real scenario. 
+
+Plan :
+ 
+Initially, we will do the Requirement analysis and try to find out if there are any such API's available. Otherwise we will try to create one of our own to solve our purpose.
