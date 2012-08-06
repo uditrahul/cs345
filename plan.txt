@@ -5,8 +5,12 @@ CS 345 Project Proposal
 
 Problem Statement:
 
-To develop a Virtual Stock trading platform using data from bseindia url and then using the API's, we can store the data in MYSQL. Using this data, we can simulate a real-time trading platform on which several users can trade as in real scenario. 
+To develop a Virtual Stock trading platform using data from BSE India. 
 
+Idea:
+
+The first step towards achieving this goal is to look for an API, and see whether sufficient numbers of API requests can be sent to the server in a limited duration of time. Once that is achieved, the data received will be parsed, and then stored to a database. A lot of users playing with their portfolios will see their trading value getting changed because of changes in stock indices.
+	
 Plan :
  
-Initially, we will do the Requirement analysis and try to find out if there are any such API's available. Otherwise we will try to create one of our own to solve our purpose.
+The first phase of the project consists of requirement analysis and improvements. This includes looking for an API that works with BSE, calculating the number of requests allowed per minute, and then parsing it from XML to some other format. In case such an API does not exist, we'll try to make an API ourselves, and implement that.
