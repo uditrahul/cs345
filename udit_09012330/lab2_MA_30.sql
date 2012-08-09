@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2012 at 05:54 PM
+-- Generation Time: Aug 09, 2012 at 07:05 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -49,6 +49,13 @@ CREATE TABLE IF NOT EXISTS `Emp` (
   PRIMARY KEY (`eid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `Emp`
+--
+
+INSERT INTO `Emp` (`eid`, `ename`, `age`, `salary`) VALUES
+(101, 'John Doe', 32, 16500);
+
 -- --------------------------------------------------------
 
 --
@@ -59,9 +66,26 @@ CREATE TABLE IF NOT EXISTS `Works` (
   `eid` int(11) NOT NULL,
   `did` int(11) NOT NULL,
   `pcttime` int(11) NOT NULL,
-  KEY `eid` (`eid`),
+  PRIMARY KEY (`eid`,`did`),
   KEY `did` (`did`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Dept`
+--
+ALTER TABLE `Dept`
+  ADD CONSTRAINT `Dept_ibfk_1` FOREIGN KEY (`managerid`) REFERENCES `Emp` (`eid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Works`
+--
+ALTER TABLE `Works`
+  ADD CONSTRAINT `Works_ibfk_2` FOREIGN KEY (`did`) REFERENCES `Dept` (`did`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Works_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `Emp` (`eid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
