@@ -1,0 +1,90 @@
+
+Q.1. 'did' is the foreign key in 'Works' table that involves the 'Dept' entity.
+
+   There are three options for enforcing this constraint when a user attempts to delete a Dept tuple:
+
+   (A) Also delete all corresponding tuples in 'Works' table.
+ 
+   (B) Disallow the deletion of such a tuple in the 'Dept' table.
+
+   (C) Set 'did' in 'Works' tuple to a default/NULL value.
+
+Q.2. 
+
+ALL MYSQL STATEMENTS:
+
+--
+-- Table structure for table `Dept`
+--
+
+CREATE TABLE IF NOT EXISTS `Dept` (
+  `did` int(11) NOT NULL,
+  `dname` text NOT NULL,
+  `budget` double NOT NULL,
+  `managerid` int(11) NOT NULL,
+  PRIMARY KEY (`did`),
+  KEY `managerid` (`managerid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Emp`
+--
+
+CREATE TABLE IF NOT EXISTS `Emp` (
+  `eid` int(11) NOT NULL,
+  `ename` text NOT NULL,
+  `age` int(11) NOT NULL,
+  `salary` double NOT NULL,
+  PRIMARY KEY (`eid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Works`
+--
+
+CREATE TABLE IF NOT EXISTS `Works` (
+  `eid` int(11) NOT NULL,
+  `did` int(11) NOT NULL,
+  `pcttime` int(11) NOT NULL,
+  PRIMARY KEY (`eid`,`did`),
+  KEY `did` (`did`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Dept`
+--
+ALTER TABLE `Dept`
+  ADD CONSTRAINT `Dept_ibfk_1` FOREIGN KEY (`managerid`) REFERENCES `Emp` (`eid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Works`
+--
+ALTER TABLE `Works`
+  ADD CONSTRAINT `Works_ibfk_2` FOREIGN KEY (`did`) REFERENCES `Dept` (`did`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Works_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `Emp` (`eid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+Q.3.
+ ALTER TABLE `Dept`
+  ADD CONSTRAINT `Dept_ibfk_1` FOREIGN KEY (`managerid`) REFERENCES `Emp` (`eid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+Q.4.
+ INSERT INTO `lab2_MA_30`.`Emp` (`eid`, `ename`, `age`, `salary`) VALUES ('101', 'John Doe', '32', '15000');
+
+Q.5.
+
+ UPDATE Emp E set E.salary = 1.1*E.salary
+
+Q.6.
+ 
+ DELETE FROM Dept D where D.dname='Toy'
+
+As did is a foreign key and we have chosen ON DELETE CASCADE for did field in Works table. Hence, after deletion of row corresponding to 'Toy' in Dept table, the corresponding entries from the 'Works' table will also be removed.  
