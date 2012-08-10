@@ -1,0 +1,44 @@
+<?php
+if ( function_exists('pcntl_fork')){ 
+	$pid = pcntl_fork();
+	if ($pid == -1) {
+		 die('could not fork');
+	} else if ($pid) {
+		 write_dummy_data_into_file();
+		 pcntl_wait($status); //Protect against Zombie children
+	} else {
+		write_dummy_data_into_file();
+	}
+}
+else{
+	echo "Concurrency not supported in your PHP installation.";
+}
+for($k=0;$k<=1000;$k++)
+{
+	for($i=1;$i<=10;$i++){
+		write_dummy_data_into_file("roll no1","name1","pass1");
+	}
+	for($j=1;$j<=10;$j++){
+		write_dummy_data_into_file("roll no2","name2","pass2");
+	}
+	for($j=1;$j<=10;$j++){
+		write_dummy_data_into_file("roll no3","name3","pass3");
+	}
+	for($j=1;$j<=10;$j++){
+		write_dummy_data_into_file("roll no4","name4","pass4");
+	}
+}
+function write_dummy_data_into_file($roll_no,$name,$password)
+{
+
+	$register=$roll_no.",".$name.",".$password."\n";
+
+
+	$log=fopen("register.txt","a") or die("Failed to open the stream");
+
+
+	fwrite($log,$register);
+	fclose($log);
+}
+
+?>
