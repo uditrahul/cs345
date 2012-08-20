@@ -1,0 +1,9 @@
+[06 Aug 2012]
+	- Submitted the plan for the course project.
+	- Working on the details for the execution of plan.
+[10 Aug 2012]
+	- Started working on the ER diagram.
+	- Finding out the details for extracting the stocks data from the BSE site.
+[17 Aug 2012]
+	- Done with ER diagram.
+	- working on the design document. 
